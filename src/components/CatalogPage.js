@@ -9,8 +9,6 @@ class CatalogPage extends React.Component {
   }
 
   render() {
-    console.log(this.state.products);
-
     return (
       <div>
         <ProductCatalog products={this.state.products} />
