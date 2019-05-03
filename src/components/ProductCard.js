@@ -2,6 +2,7 @@ import React from 'react'
 import Image from '~/src/components/Image'
 import TextBox from '~/src/components/TextBox'
 import Price from '~/src/components/Price'
+import AddToCartButton from '~/src/components/AddToCartButton'
 
 function ProductCard(props){
   return (
@@ -12,6 +13,7 @@ function ProductCard(props){
       <div className='col-md-6'>
         <h4><TextBox text={props.product.title} /></h4>
         <p><Price price={props.product.price}/></p>
+        <p><AddToCartButton product_id={props.product.id}/></p>
       </div>
     </div>
   )
