@@ -5,11 +5,15 @@ import Price from '~/src/components/Price'
 import AddToCartButton from '~/src/components/AddToCartButton'
 import Counter from '~/src/components/Counter'
 
+const onDragStart = function (e) {
+  e.dataTransfer.setData('draggable_id', e.target.id);
+  e.dataTransfer.setData('draggable_count', document.getElementById(`add_product_${e.target.id}_to_cart_counter`).value);
+};
 
 
 function ProductCard(props){
   return (
-    <div key={props.product.id} className='row mb-5 mt-5'>
+    <div key={props.product.id} id={props.product.id} className='row mb-3 mt-3 border pt-3 pb-3' draggable onDragStart={onDragStart} >
       <div className='col-md-4'>
         <Image src={props.product.imageUrl} width='180' height='250' alt={props.product.title}/>
       </div>

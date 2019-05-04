@@ -35,7 +35,6 @@ class CatalogPage extends React.Component {
       <cartContext.Provider value={{ products: this.state.products, cart: this.state.cart, addToCart: this.addToCart }}>
         <Fragment>
           <Cart />
-          <hr />
           <ProductCatalog products={this.state.products} />
         </Fragment>
       </cartContext.Provider>
