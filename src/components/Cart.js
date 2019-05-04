@@ -3,7 +3,6 @@ import cartContext from '~/cartContext'
 
 function Cart(){
 
-
   return (
     <cartContext.Consumer>
       {
@@ -12,7 +11,14 @@ function Cart(){
 
           return (
             <div
-              onDrop={ (e) => context.addToCart(parseInt(e.dataTransfer.getData("draggable_id")), parseInt(e.dataTransfer.getData("draggable_count") )) }
+              onDrop={ (e) => {
+                  const draggable_id    = parseInt(e.dataTransfer.getData("product_draggable_id"));
+                  const draggable_count = parseInt(e.dataTransfer.getData("product_draggable_count"));
+
+                  // проверяем, что перетаскивается именно Товар
+                  draggable_id && draggable_count && context.addToCart(draggable_id, draggable_count)
+              }}
+
               onDragOver={ (e) => e.preventDefault() }
             >
 
@@ -22,7 +28,6 @@ function Cart(){
                 context.cart.length > 0 &&
                   <div>
                     Details:
-
                     {
                       context.cart.map((item) => {
                         const product = context.products.find(p => p.id === item.id);

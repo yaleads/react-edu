@@ -16,10 +16,12 @@ class CatalogPage extends React.Component {
       const item = prevState.cart.find(item => item.id === product_id);
 
       if (item === undefined) {
+        // значит такого товара в корзине еще нет
         return ({ cart: [...prevState.cart, {id: product_id, count: count}] })
       }
       else
       {
+        // такой товар в корзине уже есть
         return ({ cart: prevState.cart.map(i => (
           {
             id: i.id,
