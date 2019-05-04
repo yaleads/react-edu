@@ -11,19 +11,19 @@ class CatalogPage extends React.Component {
     this.addToCart = this.addToCart.bind(this)
   }
 
-  addToCart (product_id) {
+  addToCart (product_id, count) {
     this.setState((prevState) => {
       const item = prevState.cart.find(item => item.id === product_id);
 
       if (item === undefined) {
-        return ({ cart: [...prevState.cart, {id: product_id, count: 1}] })
+        return ({ cart: [...prevState.cart, {id: product_id, count: count}] })
       }
       else
       {
         return ({ cart: prevState.cart.map(i => (
           {
             id: i.id,
-            count: i.count + (i.id === product_id ? 1 : 0)
+            count: i.count + (i.id === product_id ? count : 0)
           }))
         });
       }
@@ -37,8 +37,6 @@ class CatalogPage extends React.Component {
           <Cart />
           <hr />
           <ProductCatalog products={this.state.products} />
-          <hr />
-          <Cart />
         </Fragment>
       </cartContext.Provider>
     )
