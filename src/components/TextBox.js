@@ -1,8 +1,8 @@
 import React from 'react'
 
-function TextBox(props){
+function TextBox({ text }){
   return (
-    <span>{props.text}</span>
+    <span>{text}</span>
   )
 }
 

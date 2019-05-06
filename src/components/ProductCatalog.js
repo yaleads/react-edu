@@ -1,10 +1,10 @@
 import React from 'react'
 import ProductCard from '~/src/components/ProductCard'
 
-function ProductCatalog(props){
+function ProductCatalog({ products }){
   return (
     <div>
-      { props.products.map( (product) => <ProductCard product={product} key={product.id} /> ) }
+      { products.map( (product) => <ProductCard product={product} key={product.id} /> ) }
     </div>
   )
 }
