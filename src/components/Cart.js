@@ -1,47 +1,51 @@
-import React from 'react'
+import React, { Component } from 'react'
+import pluralize from 'pluralize'
 import cartContext from '~/cartContext'
-import Pluralizer from '~/src/modules/Pluralizer'
 
-function Cart(){
+class Cart extends Component {
 
-  return (
-    <cartContext.Consumer>
-      {
-        (context) => {
-          return (
-            <div
-              onDrop={ (e) => {
-                  const draggableId    = parseInt(e.dataTransfer.getData("productDraggableId"));
-                  const draggableCount = parseInt(e.dataTransfer.getData("productDraggableCount"));
+  catchDrop(e, addToCart){
+    const draggableObject = JSON.parse(e.dataTransfer.getData("productDraggableObject"));
+    const draggableCount = parseInt(e.dataTransfer.getData("productDraggableCount"));
 
-                  // проверяем, что перетаскивается именно Товар
-                  draggableId && draggableCount && context.addToCart(draggableId, draggableCount)
-              }}
+    // проверяем, что перетаскивается именно Товар
+    draggableObject && draggableCount && addToCart(draggableObject, draggableCount)
+  }
 
-              onDragOver={ (e) => e.preventDefault() }
-            >
+  cartDetails(cart) {
+    if (cart.length > 0) {
+      return (
+        <div>
+          Details:
+          {cart.map(item => (
+            <li key={item.product.id}>{counterPrefix(item.count)}{item.product.title}</li>
+          ))}
+        </div>
+      )
+    }
+  }
 
-              <h4>Cart: { Pluralizer(context.cartItemCounter, 'item') }</h4>
+  render () {
+    return (
+      <cartContext.Consumer>
+        {
+          ({cart, addToCart, cartItemCounter}) => {
+            return (
+              <div onDrop={(e) => this.catchDrop(e, addToCart)} onDragOver={(e) => e.preventDefault()}>
 
-              { context.cart.length > 0 &&
-                  <div>
-                    Details:
-                    { context.cart.map(item => (
-                        <li key={item.id}>{counterPrefix(item.count)}{getProduct(context.products, item.id).title}</li>
-                      ))
-                    }
-                  </div>
-              }
+                <h4>Cart: {pluralize('item', cartItemCounter, true)}</h4>
 
-            </div>
-          )
+                { this.cartDetails(cart) }
+
+              </div>
+            )
+          }
         }
-      }
-    </cartContext.Consumer>
-  )
+      </cartContext.Consumer>
+    )
+  }
 }
 
-const counterPrefix = count           => ( count > 1 ? `${count} x ` : '');
-const getProduct    = (products, id)  => ( products.find(p => p.id === id) );
+const counterPrefix = count => ( count > 1 ? `${count} x ` : '');
 
 export default Cart;

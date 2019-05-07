@@ -11,16 +11,17 @@ class ProductCard extends Component {
     this.onDragStart  = this.onDragStart.bind(this);
   }
 
-  onDragStart(e) {
-    e.dataTransfer.setData('productDraggableId', e.target.id);
-    e.dataTransfer.setData('productDraggableCount', document.getElementById(`add_product_${e.target.id}_to_cart_counter`).value);
+  onDragStart(e, product) {
+    e.dataTransfer.setData('productDraggableObject', JSON.stringify(product));
+    e.dataTransfer.setData('productDraggableCount', document.getElementById(`add_product_${product.id}_to_cart_counter`).value);
   };
 
   render () {
     const { id, title, price, imageUrl } = this.props.product;
+    const product = this.props.product;
 
     return (
-      <div key={id} id={id} draggable onDragStart={this.onDragStart} className='row mb-3 mt-3 border pt-3 pb-3' >
+      <div key={id} id={id} draggable onDragStart={(e) => this.onDragStart(e, product) } className='row mb-3 mt-3 border pt-3 pb-3' >
         <div className='col-md-4'>
           <Image src={imageUrl} width='180' height='250' alt={title}/>
         </div>
@@ -28,7 +29,7 @@ class ProductCard extends Component {
           <h4><TextBox text={title}/></h4>
           <p><Price price={price}/></p>
 
-          <AddToCart productId={this.props.product.id}/>
+          <AddToCart product={product}/>
         </div>
       </div>
     )
