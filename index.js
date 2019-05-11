@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 
-import CatalogPage from "./src/components/CatalogPage";
+import CatalogPage from "~/src/components/CatalogPage";
+import CartContainer from "~/src/components/CartContainer";
 
 class App extends Component {
   constructor(props) {
@@ -12,8 +13,12 @@ class App extends Component {
   render() {
     return (
       <div className='container'>
-        <h1>React App</h1>
-        <CatalogPage />
+        <h1 className={'mt-3'}>React App</h1>
+        <hr />
+
+        <CartContainer>
+          <CatalogPage />
+        </CartContainer>
       </div>
     );
   }

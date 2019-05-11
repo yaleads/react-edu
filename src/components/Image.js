@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Image(props){
+function Image({src, width, height, alt}){
   return (
-    <img src={props.src} width={props.width} height={props.height} alt={props.alt} />
+    <img src={src} width={width} height={height} alt={alt} />
   )
 }
 

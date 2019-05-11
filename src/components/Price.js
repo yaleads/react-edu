@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Price(props){
+function Price({ price }){
   return (
-    <span style={{ textDecoration: 'underline' }}>${props.price}</span>
+    <span style={{ textDecoration: 'underline' }}>${price}</span>
   )
 }
 

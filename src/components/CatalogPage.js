@@ -1,6 +1,6 @@
 import React from 'react'
 import Products from '~/src/constants/Products'
-import ProductCatalog from "./ProductCatalog";
+import ProductCatalog from '~/src/components/ProductCatalog';
 
 class CatalogPage extends React.Component {
   constructor(props) {
@@ -10,9 +10,7 @@ class CatalogPage extends React.Component {
 
   render() {
     return (
-      <div>
-        <ProductCatalog products={this.state.products} />
-      </div>
+      <ProductCatalog products={this.state.products} />
     )
   }
 }
