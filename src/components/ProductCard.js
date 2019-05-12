@@ -3,6 +3,8 @@ import Image from '~/src/components/Image'
 import TextBox from '~/src/components/TextBox'
 import Price from '~/src/components/Price'
 import AddToCart from '~/src/components/AddToCart'
+import { NavLink } from "react-router-dom";
+import { productPath } from "~/src/helpers/routes";
 
 class ProductCard extends Component {
   constructor(props){
@@ -26,7 +28,12 @@ class ProductCard extends Component {
           <Image src={imageUrl} width='180' height='250' alt={title}/>
         </div>
         <div className='col-md-6'>
-          <h4><TextBox text={title}/></h4>
+          <h4>
+            <NavLink to={productPath(id)}>
+              <TextBox text={title}/>
+            </NavLink>
+          </h4>
+
           <p><Price price={price}/></p>
 
           <AddToCart product={product}/>
