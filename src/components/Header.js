@@ -1,32 +1,39 @@
 import React from 'react';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { NavLink as RRNavLink } from 'react-router-dom';
 import { productsPath, contactsPath, cartPath } from '~/src/helpers/routes'
-import { NavLink } from "react-router-dom";
 import CartButton from '~/src/components/CartButton';
 
 
-const Header = () => (
-  <>
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <NavLink exact to={productsPath()} className='navbar-brand'>React App</NavLink>
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
 
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
+    this.toggle = this.toggle.bind(this);
+    this.state = { isOpen: false };
+  }
 
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav mr-auto">
+  toggle() { this.setState({ isOpen: !this.state.isOpen }); }
 
-          <li className='nav-item'><NavLink exact to={productsPath()} className='nav-link'>Catalog</NavLink></li>
-          <li className='nav-item'><NavLink       to={contactsPath()} className='nav-link'>Contacts</NavLink></li>
-          <li className='nav-item'><NavLink       to={cartPath()}     className='nav-link'>Cart</NavLink></li>
+  render() {
+    return (
+      <div>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href={productsPath()}>React App</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav navbar>
+              <NavItem><NavLink tag={RRNavLink} exact to={productsPath()} activeClassName="active">Catalog</NavLink></NavItem>
+              <NavItem><NavLink tag={RRNavLink}       to={contactsPath()} activeClassName="active">Contacts</NavLink></NavItem>
+              <NavItem><NavLink tag={RRNavLink}       to={cartPath()    } activeClassName="active">Cart</NavLink></NavItem>
+            </Nav>
+          </Collapse>
 
-        </ul>
-        <CartButton />
-
+          <CartButton />
+        </Navbar>
       </div>
-    </nav>
-  </>
-);
+    );
+  }
+}
 
 export default Header;

@@ -11,13 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "jquery": "^3.4.1",
     "pluralize": "^7.0.0",
-    "popper.js": "^1.15.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router": "^5.0.0",
-    "react-router-dom": "^5.0.0"
+    "react-router-dom": "^5.0.0",
+    "reactstrap": "^8.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-0",
