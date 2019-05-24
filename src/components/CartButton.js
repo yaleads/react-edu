@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
-import pluralize from 'pluralize'
-import cartContext from '~/cartContext'
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import { cartPath } from '~/src/helpers/routes'
+import pluralize from 'pluralize';
+import cartContext from '~/cartContext';
 
-class Cart extends Component {
+class CartButton extends Component {
 
   catchDrop(e, addToCart){
     const draggableObject = JSON.parse(e.dataTransfer.getData("productDraggableObject"));
@@ -12,31 +14,16 @@ class Cart extends Component {
     draggableObject && draggableCount && addToCart(draggableObject, draggableCount)
   }
 
-  cartDetails(cart) {
-    if (cart.length > 0) {
-      return (
-        <div>
-          Details:
-          {cart.map(item => (
-            <li key={item.product.id}>{counterPrefix(item.count)}{item.product.title}</li>
-          ))}
-        </div>
-      )
-    }
-  }
-
   render () {
     return (
       <cartContext.Consumer>
         {
-          ({cart, addToCart, cartItemCounter}) => {
+          ({ addToCart, cartItemCounter }) => {
             return (
               <div onDrop={(e) => this.catchDrop(e, addToCart)} onDragOver={(e) => e.preventDefault()}>
-
-                <h4>Cart: {pluralize('item', cartItemCounter, true)}</h4>
-
-                { this.cartDetails(cart) }
-
+                <NavLink to={ cartPath() } className='btn btn-outline-success my-2 my-sm-0'>
+                  Cart: {pluralize('item', cartItemCounter, true)}
+                </NavLink>
               </div>
             )
           }
@@ -46,6 +33,4 @@ class Cart extends Component {
   }
 }
 
-const counterPrefix = count => ( count > 1 ? `${count} x ` : '');
-
-export default Cart;
+export default CartButton;

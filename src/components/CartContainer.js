@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import cartContext from '~/cartContext';
-import Cart from '~/src/components/Cart';
 
 class CartContainer extends Component {
   constructor(props) {
@@ -36,7 +35,6 @@ class CartContainer extends Component {
     return (
       <cartContext.Provider value={{ cart: this.state.cart, addToCart: this.addToCart, cartItemCounter: cartItemCounter }}>
         <Fragment>
-          <Cart />
           { this.props.children }
         </Fragment>
       </cartContext.Provider>

@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import 'bootstrap/dist/css/bootstrap.css';
+import { Router, Route, Switch } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import CatalogPage from "~/src/components/CatalogPage";
-import CartContainer from "~/src/components/CartContainer";
+import history from '~/history';
+
+import routes from '~/src/routes'
+import CartContainer from '~/src/components/CartContainer'
+import Header from '~/src/components/Header'
+
+const RouteWithSubroutes = (route, key) => (
+  <Route key={key} {...route} />
+);
 
 class App extends Component {
   constructor(props) {
@@ -12,14 +20,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className='container'>
-        <h1 className={'mt-3'}>React App</h1>
-        <hr />
+      <CartContainer>
+        <Router history={history}>
+          <Header />
 
-        <CartContainer>
-          <CatalogPage />
-        </CartContainer>
-      </div>
+          <Switch>
+            { routes.map( (route, key) => RouteWithSubroutes(route, key) ) }
+          </Switch>
+        </Router>
+      </CartContainer>
     );
   }
 }
