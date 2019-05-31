@@ -1,19 +1,14 @@
 import React, { Component } from 'react'
-import Image from '~/src/components/Image'
-import TextBox from '~/src/components/TextBox'
-import Price from '~/src/components/Price'
-import AddToCart from '~/src/components/AddToCart'
+import Image from '~/src/components/shared/Image'
+import TextBox from '~/src/components/shared/TextBox'
+import Price from '~/src/components/shared/Price'
+import AddToCart from './AddToCart'
 import { NavLink } from "react-router-dom";
 import { productPath } from "~/src/helpers/routes";
 
 class ProductCard extends Component {
-  constructor(props){
-    super(props);
 
-    this.onDragStart  = this.onDragStart.bind(this);
-  }
-
-  onDragStart(e, product) {
+  onDragStart = (e, product) => {
     e.dataTransfer.setData('productDraggableObject', JSON.stringify(product));
     e.dataTransfer.setData('productDraggableCount', document.getElementById(`add_product_${product.id}_to_cart_counter`).value);
   };
