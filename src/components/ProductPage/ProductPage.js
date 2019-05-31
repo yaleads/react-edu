@@ -19,7 +19,7 @@ class ProductPage extends React.Component {
       .catch( () => {
         this.props.history.push({
           pathname: productsPath(),
-          state: { errorMessage: 'Product not found' }
+          state: { errorMessage: 'ProductPage not found' }
         });
       } )
   }

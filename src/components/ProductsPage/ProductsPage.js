@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductsPageView from '~/src/components/ProductsPageView'
+import ProductsPageView from './ProductsPageView'
 import request from 'superagent'
 import { space, environment, accessToken} from '~/src/constants/Contentful'
 

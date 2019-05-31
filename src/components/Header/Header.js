@@ -2,7 +2,7 @@ import React from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import { productsPath, contactsPath, cartPath } from '~/src/helpers/routes'
-import CartButton from '~/src/components/CartButton';
+import CartButton from './CartButton';
 
 
 class Header extends React.Component {

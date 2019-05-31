@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Modal, ModalBody } from 'reactstrap';
-import Image from './Image'
+import Image from '../shared/Image'
 
 const FullScreen =( { location: { state }, history } ) => {
 

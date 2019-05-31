@@ -1,6 +1,6 @@
 import React from 'react';
-import ProductCard from "./ProductCard";
-import Gallery from "./Gallery";
+import ProductCard from "../ProductCard/ProductCard";
+import Gallery from "~/src/components/Gallery/Gallery";
 
 
 const ProductPageView = ({ isLoading, product} ) => (

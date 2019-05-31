@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from './Image';
+import Image from '../shared/Image';
 import GoToFullScreenButton from './GoToFullScreenButton';
 import SwipeAbleImage from './SwipeAbleImage';
 
@@ -57,8 +57,6 @@ class Gallery extends React.Component {
               onClickEvent={ () => this.setState( { currentImageIndex: index }) } />
             )
           )}
-
-
 
         </div>
       )

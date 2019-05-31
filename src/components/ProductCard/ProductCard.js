@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import Image from '~/src/components/Image'
-import TextBox from '~/src/components/TextBox'
-import Price from '~/src/components/Price'
-import AddToCart from '~/src/components/AddToCart'
+import Image from '~/src/components/shared/Image'
+import TextBox from '~/src/components/shared/TextBox'
+import Price from '~/src/components/shared/Price'
+import AddToCart from './AddToCart'
 import { NavLink } from "react-router-dom";
 import { productPath } from "~/src/helpers/routes";
 

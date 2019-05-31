@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductCard from '~/src/components/ProductCard'
+import ProductCard from '~/src/components/ProductCard/ProductCard'
 
 const ProductsList = ({ products }) => (
   <div>
