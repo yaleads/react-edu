@@ -31,13 +31,8 @@ class Gallery extends React.Component {
             width={600}
             height={400}
             className={'mb-2'}
-            onSwipe={(direction) => {
-              const diff = direction === 'right' ? (-1 + images.length) : 1;
-              this.setState(prevState => ({
-                currentImageIndex: (prevState.currentImageIndex + diff) % images.length
-              }))
-            }}
-            />
+            onSwipe={(direction) => ( direction === 'right' ? this.prevImage() : this.nextImage() ) }
+          />
 
           <button onClick={this.nextImage}>&gt;</button>
 
