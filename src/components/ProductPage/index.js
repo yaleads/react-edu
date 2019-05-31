@@ -1,7 +1,6 @@
 import React from 'react';
 import { productsPath } from '~/src/helpers/routes'
-import request from 'superagent'
-import { space, environment, accessToken} from '~/src/constants/Contentful'
+import { getProduct } from '~/src/components/getData'
 import ProductPageView from './ProductPageView'
 
 class ProductPage extends React.Component {
@@ -11,11 +10,8 @@ class ProductPage extends React.Component {
   }
 
   componentDidMount() {
-    request
-      .get(`https://cdn.contentful.com/spaces/${space}/environments/${environment}/entries?access_token=${accessToken}`)
-      .query({ 'fields.id': this.props.id })
-      .query({'content_type': 'product'})
-      .then( ( { body : { items } } ) => this.setState( { isLoading: false, product: items[0].fields } ) )
+    getProduct(this.props.id)
+      .then( product => this.setState( { isLoading: false, product: product } ) )
       .catch( () => {
         this.props.history.push({
           pathname: productsPath(),

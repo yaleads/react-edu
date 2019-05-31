@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductsList from './ProductsList'
 import Alert from '~/src/components/shared/Alert'
-import ProductSlider from '~/src/components/ProductsSlider/ProductsSlider'
+import ProductSlider from '~/src/components/ProductsSlider'
 
 const ProductsPageView = ({products, sliderProducts, alertText}) => (
   <div className='container'>

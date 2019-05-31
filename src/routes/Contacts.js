@@ -1,4 +1,4 @@
-import Contacts from '~/src/components/Contacts/Contacts'
+import Contacts from '~/src/components/Contacts'
 import { contactsPath } from "~/src/helpers/routes";
 
 export default {

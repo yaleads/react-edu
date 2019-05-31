@@ -1,4 +1,4 @@
-import CartPage from '~/src/components/CartPage/CartPage'
+import CartPage from '~/src/components/CartPage'
 import { cartPath } from "~/src/helpers/routes";
 
 export default {

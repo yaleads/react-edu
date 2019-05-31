@@ -1,4 +1,4 @@
-import ProductsPage from '~/src/components/ProductsPage/ProductsPage'
+import ProductsPage from '~/src/components/ProductsPage'
 import { productsPath } from "~/src/helpers/routes";
 
 export default {

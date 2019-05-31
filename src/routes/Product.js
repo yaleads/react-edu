@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ProductPage from '~/src/components/ProductPage/ProductPage'
+import ProductPage from '~/src/components/ProductPage'
 import { productPath } from "~/src/helpers/routes";
 
 export default {
