@@ -1,76 +1,62 @@
 import React from 'react';
-import Image from './Image'
-import { Link } from "react-router-dom";
+import Image from './Image';
+import GoToFullScreenButton from './GoToFullScreenButton';
+import SwipeAbleImage from './SwipeAbleImage';
 
 class Gallery extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { mainImageIndex: 0, touchStartX: undefined, touchMoveX: undefined };
-    this.nextImage = this.nextImage.bind(this);
-    this.prevImage = this.prevImage.bind(this);
-    this.onTouchStart = this.onTouchStart.bind(this);
-    this.onTouchMove = this.onTouchMove.bind(this);
-    this.onTouchEnd = this.onTouchEnd.bind(this);
+    this.state = { currentImageIndex: 0 };
   }
 
-  prevImage() { this.setState( prevState => ({ mainImageIndex: (prevState.mainImageIndex - 1 + this.props.images.length) % this.props.images.length }) ) }
-  nextImage() { this.setState( prevState => ({ mainImageIndex: (prevState.mainImageIndex + 1) % this.props.images.length }) ) }
-
-  onTouchStart(e) { this.setState( {touchStartX: e.touches[0].clientX} ) }
-  onTouchMove(e)  { this.setState( {touchMoveX:  e.touches[0].clientX} ) }
-  onTouchEnd() {
-    if (this.state.touchMoveX > this.state.touchStartX ) { this.nextImage() }
-    if (this.state.touchMoveX < this.state.touchStartX ) { this.prevImage() }
-  }
+  prevImage = () => { this.setState( prevState => ({ currentImageIndex: (prevState.currentImageIndex - 1 + this.props.images.length) % this.props.images.length }) ) };
+  nextImage = () => { this.setState( prevState => ({ currentImageIndex: (prevState.currentImageIndex + 1) % this.props.images.length }) ) };
 
   render () {
-    //console.log(this.state);
     const images = this.props.images;
 
     if (images) {
-      const mainImage = this.props.images[this.state.mainImageIndex];
+      const productId = this.props.productId;
+      const currentImage = this.props.images[this.state.currentImageIndex];
 
       return (
         <div className={'mb-5'}>
           <h4 className="mt-5">Product Galery:</h4>
 
           <button onClick={this.prevImage}>&lt;</button>
-          {
-            <Image key={mainImage.url}
-                   src={mainImage.url}
-                   width={600}
-                   height={400}
-                   alt={mainImage.title}
-                   className={'mb-2'}
-                   onTouchStart={ this.onTouchStart }
-                   onTouchMove={ this.onTouchMove }
-                   onTouchEnd={ this.onTouchEnd }
+
+          <SwipeAbleImage
+            currentImage={currentImage}
+            width={600}
+            height={400}
+            className={'mb-2'}
+            onSwipe={(direction) => {
+              const diff = direction === 'right' ? (-1 + images.length) : 1;
+              this.setState(prevState => ({
+                currentImageIndex: (prevState.currentImageIndex + diff) % images.length
+              }))
+            }}
             />
-          }
+
           <button onClick={this.nextImage}>&gt;</button>
 
           <br />
-          <Link className={'btn btn-primary mb-2'} to={{
-              pathname: `/products/${this.props.productId}/img/${this.state.mainImageIndex}`,
-              state: {
-                modal: true,
-                image: mainImage
-              }
-            }}
-          >
-            Show full screen
-          </Link>
+
+          <GoToFullScreenButton productId={productId} currentImageIndex={this.state.currentImageIndex} currentImage={currentImage} />
 
           <br />
 
-          {images.map((image, index) => <Image key={index}
-                                               src={image.url}
-                                               width={120}
-                                               height={80}
-                                               alt={image.title}
-                                               onClickEvent={ () => this.setState( { mainImageIndex: index }) }
-          />)}
+          {images.map((image, index) => (
+            <Image
+              key={index}
+              src={image.url}
+              width={120}
+              height={80}
+              alt={image.title}
+              onClickEvent={ () => this.setState( { currentImageIndex: index }) } />
+            )
+          )}
 
 
 
@@ -85,16 +71,3 @@ class Gallery extends React.Component {
 }
 
 export default Gallery;
-
-/*
-toggleFullScreen() { this.setState(prevState => ( {isFullScreen: !prevState.isFullScreen} ) )}
-
-<button className={'mb-2'} onClick={this.toggleFullScreen}>Show full screen</button>
-
-{ this.state.isFullScreen && <FullScreen image={mainImage}
-                                                   toggleFullScreen={ this.toggleFullScreen }
-                                                   nextImage={this.nextImage}
-                                                   prevImage={this.prevImage}
-          /> }
-
-*/

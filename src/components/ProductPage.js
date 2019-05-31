@@ -1,12 +1,8 @@
 import React from 'react';
-import ProductCard from "./ProductCard";
-import Gallery from "./Gallery";
 import { productsPath } from '~/src/helpers/routes'
-
 import request from 'superagent'
-
 import { space, environment, accessToken} from '~/src/constants/Contentful'
-
+import ProductPageView from './ProductPageView'
 
 class ProductPage extends React.Component {
   constructor(props){
@@ -30,15 +26,7 @@ class ProductPage extends React.Component {
 
 
   render () {
-    //console.log(this.state.product);
-    return (
-      <div className='container'>
-        <h1 className={'mt-3'}>Product Page</h1>
-        <hr/>
-        {  this.state.isLoading ? <p>Loading product Info...</p> : <ProductCard product={this.state.product}/> }
-        { !this.state.isLoading && <Gallery images={this.state.product.images} productId={this.state.product.id}/> }
-      </div>
-    )
+    return <ProductPageView isLoading={this.state.isLoading} product={this.state.product} />
   }
 
 }

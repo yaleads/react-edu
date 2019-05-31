@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import history from '~/history';
 
 import routes from '~/src/routes'
+import { productImagePath }  from '~/src/helpers/routes';
+
 import CartContainer from '~/src/components/CartContainer'
 import Header from '~/src/components/Header'
 import FullScreen from "./src/components/FullScreen";
@@ -20,8 +22,6 @@ class App extends Component {
   }
 
   render() {
-    //console.log(this.props);
-
     return (
       <CartContainer>
         <Router history={history}>
@@ -31,7 +31,7 @@ class App extends Component {
             { routes.map( (route, key) => RouteWithSubroutes(route, key) ) }
           </Switch>
 
-          <Route path="/products/:product_id/img/:image_id" component={FullScreen} />
+          <Route path={productImagePath()} component={FullScreen} />
 
         </Router>
       </CartContainer>

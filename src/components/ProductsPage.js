@@ -1,9 +1,6 @@
 import React from 'react';
-import ProductsList from '~/src/components/ProductsList'
-import Alert from '~/src/components/Alert'
-import ProductSlider from './ProductsSlider'
+import ProductsPageView from '~/src/components/ProductsPageView'
 import request from 'superagent'
-
 import { space, environment, accessToken} from '~/src/constants/Contentful'
 
 class ProductsPage extends React.Component {
@@ -26,18 +23,10 @@ class ProductsPage extends React.Component {
   }
 
   render() {
-    const products = this.state.products;
+    const { products } = this.state;
+    const alertText = this.props.location.state && this.props.location.state.errorMessage;
     return (
-      <div className='container'>
-        <Alert text={ this.props.location.state && this.props.location.state.errorMessage }/>
-
-        {products.length > 0 && <ProductSlider products={products}/>}
-
-        <h1 className={'mt-3'}>Products Catalog</h1>
-        <hr />
-
-        <ProductsList products={products} />
-      </div>
+      <ProductsPageView products={products} sliderProducts={products} alertText={alertText} />
     )
   }
 }

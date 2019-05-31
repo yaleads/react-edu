@@ -7,13 +7,8 @@ import { NavLink } from "react-router-dom";
 import { productPath } from "~/src/helpers/routes";
 
 class ProductCard extends Component {
-  constructor(props){
-    super(props);
 
-    this.onDragStart  = this.onDragStart.bind(this);
-  }
-
-  onDragStart(e, product) {
+  onDragStart = (e, product) => {
     e.dataTransfer.setData('productDraggableObject', JSON.stringify(product));
     e.dataTransfer.setData('productDraggableCount', document.getElementById(`add_product_${product.id}_to_cart_counter`).value);
   };

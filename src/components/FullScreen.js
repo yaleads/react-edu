@@ -4,7 +4,6 @@ import { Modal, ModalBody } from 'reactstrap';
 import Image from './Image'
 
 const FullScreen =( { location: { state }, history } ) => {
-  //console.log(state);
 
   if (state) {
     const image = state.image;

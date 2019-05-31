@@ -7,12 +7,10 @@ class AddToCart extends Component {
     super(props);
 
     this.state = {count: 1};
-    this.addCount     = this.addCount.bind(this);
-    this.removeCount  = this.removeCount.bind(this);
   }
 
-  addCount()    { this.setState( (prevState) => ( {count: prevState.count + 1 })) }
-  removeCount() { this.setState( (prevState) => ( {count: (prevState.count === 1 ? 1 : prevState.count - 1 ) })) }
+  addCount    = () => { this.setState( (prevState) => ( {count: prevState.count + 1 })) };
+  removeCount = () => { this.setState( (prevState) => ( {count: (prevState.count === 1 ? 1 : prevState.count - 1 ) })) };
 
   render () {
     const product = this.props.product;

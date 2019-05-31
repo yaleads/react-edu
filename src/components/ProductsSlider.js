@@ -6,8 +6,6 @@ class ProductsSlider extends React.Component {
     super(props);
 
     this.state = {currentIndex: 0};
-    this.nextSlide = this.nextSlide.bind(this);
-    this.prevSlide = this.prevSlide.bind(this);
   }
 
   componentDidMount() {
@@ -18,15 +16,13 @@ class ProductsSlider extends React.Component {
     clearInterval(this.interval);
   }
 
-  prevSlide() { this.setState( prevState => ({ currentIndex: (prevState.currentIndex - 1 + this.props.products.length) % this.props.products.length }) ) }
-  nextSlide() { this.setState( prevState => ({ currentIndex: (prevState.currentIndex + 1) % this.props.products.length }) ) }
+  prevSlide = () => { this.setState( prevState => ({ currentIndex: (prevState.currentIndex - 1 + this.props.products.length) % this.props.products.length }) ) };
+  nextSlide = () => { this.setState( prevState => ({ currentIndex: (prevState.currentIndex + 1) % this.props.products.length }) ) };
 
 
   render () {
     const products = this.props.products;
     const currentIndex = this.state.currentIndex;
-    //console.log(products);
-    //console.log(currentIndex);
 
     return (
       <div className={'row my-5'}>
