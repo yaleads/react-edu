@@ -14,7 +14,7 @@ class AddToCart extends React.Component {
   removeCount = () => { this.setState( (prevState) => ( {count: (prevState.count === 1 ? 1 : prevState.count - 1 ) })) };
 
   render () {
-    const product = this.props.product;
+    const { product, addProductToCart } = this.props;
     const count = this.state.count;
 
     return (
@@ -28,7 +28,7 @@ class AddToCart extends React.Component {
         </p>
 
         <p>
-          <button onClick={ () => this.props.addProductToCart(product, count) }>Add to Cart</button>
+          <button onClick={ () => addProductToCart(product, count) }>Add to Cart</button>
         </p>
       </>
     )

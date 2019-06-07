@@ -13,4 +13,4 @@ const CartPage = ({ cart }) => (
 
 const mapStateToProps = state => ({ cart: state.cart.items });
 
-export default connect(mapStateToProps, {})(CartPage);
+export default connect(mapStateToProps)(CartPage);

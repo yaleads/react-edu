@@ -16,18 +16,20 @@ class CartButton extends Component {
   }
 
   render () {
-    const cartItemsCounter = this.props.cart.reduce((partialSum, i) => partialSum + i.count, 0);
-
     return (
       <div onDrop={(e) => this.catchDrop(e)} onDragOver={(e) => e.preventDefault()}>
         <NavLink to={ cartPath() } className='btn btn-outline-success my-2 my-sm-0'>
-          Cart: {pluralize('item', cartItemsCounter, true)}
+          Cart: {pluralize('item', this.props.cartItemsCounter, true)}
         </NavLink>
       </div>
     )
   }
 }
 
-const mapStateToProps = state => ({ cart: state.cart.items });
+const mapStateToProps = state => {
+  const cartItemsCounter = state.cart.items.reduce((partialSum, i) => partialSum + i.count, 0);
+
+  return{ cartItemsCounter: cartItemsCounter }
+};
 
 export default connect(mapStateToProps, { addProductToCart })(CartButton);
