@@ -29,15 +29,15 @@ class ProductsPage extends React.Component {
 ProductsPage.propTypes = {
   fetchProducts: PropTypes.func.isRequired,
   products: PropTypes.array.isRequired,
-  isFetching: PropTypes.bool,
-  error: PropTypes.bool
+  isFetching: PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => {
   return {
-    products: state.products.items,
+    products:   state.products.items,
     isFetching: state.products.isFetching,
-    isError: state.products.isError
+    isError:    state.products.isError
   }
 };
 
