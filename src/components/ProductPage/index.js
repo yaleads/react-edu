@@ -1,30 +1,45 @@
 import React from 'react';
-import { productsPath } from '~/src/helpers/routes'
-import { getProduct } from '~/src/components/getData'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchProduct } from '~/src/actions/Product';
 import ProductPageView from './ProductPageView'
+import { productsPath } from '~/src/helpers/routes'
+
 
 class ProductPage extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = { isLoading: true, product: {} };
-  }
 
   componentDidMount() {
-    getProduct(this.props.id)
-      .then( product => this.setState( { isLoading: false, product: product } ) )
-      .catch( () => {
-        this.props.history.push({
-          pathname: productsPath(),
-          state: { errorMessage: 'ProductPage not found' }
-        });
-      } )
+    this.props.fetchProduct(this.props.id);
+  }
+
+  componentDidUpdate() {
+    if (this.props.isError) {
+      this.props.history.push({
+        pathname: productsPath(),
+        state: { errorMessage: 'ProductPage not found' }
+      });
+    }
   }
 
 
   render () {
-    return <ProductPageView isLoading={this.state.isLoading} product={this.state.product} />
+    const { product, isFetching, isError } = this.props;
+    return <ProductPageView product={product} isFetching={isFetching} isError={isError} />
   }
 
 }
 
-export default ProductPage;
+ProductPage.propTypes = {
+  fetchProduct: PropTypes.func.isRequired,
+  product:      PropTypes.object.isRequired,
+  isFetching:   PropTypes.bool.isRequired,
+  isError:      PropTypes.bool.isRequired
+};
+
+const mapStateToProps = state => ({
+  product:    state.product.item,
+  isFetching: state.product.isFetching,
+  isError:    state.product.isError
+});
+
+export default connect(mapStateToProps, { fetchProduct })(ProductPage);

@@ -1,24 +1,41 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchProducts } from '~/src/actions/Products';
 import ProductsPageView from './ProductsPageView'
-import { getProducts } from '~/src/components/getData'
 
 class ProductsPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { products: [] };
-  }
-
   componentDidMount() {
-    getProducts().then( products => this.setState( { products } ) )
+    this.props.fetchProducts();
   }
 
   render() {
-    const { products } = this.state;
+    const {products, isFetching, isError } = this.props;
     const alertText = this.props.location.state && this.props.location.state.errorMessage;
     return (
-      <ProductsPageView products={products} sliderProducts={products} alertText={alertText} />
+      <ProductsPageView
+        products={products}
+        sliderProducts={products}
+        alertText={alertText}
+        isFetching={isFetching}
+        isError={isError}
+      />
     )
+
   }
 }
 
-export default ProductsPage;
+ProductsPage.propTypes = {
+  fetchProducts:  PropTypes.func.isRequired,
+  products:       PropTypes.array.isRequired,
+  isFetching:     PropTypes.bool.isRequired,
+  isError:        PropTypes.bool.isRequired
+};
+
+const mapStateToProps = state => ({
+  products:   state.products.items,
+  isFetching: state.products.isFetching,
+  isError:    state.products.isError
+});
+
+export default connect(mapStateToProps, { fetchProducts })(ProductsPage);

@@ -4,11 +4,12 @@ import { Router, Route, Switch } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import history from '~/history';
-
 import routes from '~/src/routes'
 import { productImagePath }  from '~/src/helpers/routes';
 
-import CartContainer from '~/src/components/CartContainer'
+import { Provider } from 'react-redux';
+import store from '~/src/store';
+
 import Header from '~/src/components/Header'
 import FullScreen from "./src/components/Gallery/FullScreen";
 
@@ -23,7 +24,7 @@ class App extends Component {
 
   render() {
     return (
-      <CartContainer>
+      <Provider store={store}>
         <Router history={history}>
           <Header />
 
@@ -34,7 +35,7 @@ class App extends Component {
           <Route path={productImagePath()} component={FullScreen} />
 
         </Router>
-      </CartContainer>
+      </Provider>
     );
   }
 }

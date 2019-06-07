@@ -1,34 +1,16 @@
-import React from 'react'
-import cartContext from '~/cartContext'
+import React from 'react';
+import { connect } from 'react-redux';
+import CartItems from './CartItems'
 
-const CartPage = () => (
+const CartPage = ({ cart }) => (
   <div className='container'>
     <h1 className={'mt-3'}>Cart</h1>
     <hr />
 
-    <cartContext.Consumer>
-      { ({ cart }) => <div>{ cartItems(cart) }</div> }
-    </cartContext.Consumer>
-
+    <CartItems cart={cart} />
   </div>
 );
 
-const cartItems  = (cart) => {
-  if (cart.length > 0) {
-    return (
-      <div>
-        Details:
-        {cart.map(item => (
-          <li key={item.product.id}>{counterPrefix(item.count)}{item.product.title}</li>
-        ))}
-      </div>
-    )
-  }
-  else {
-    return (<p>No products in the Cart</p>)
-  }
-};
+const mapStateToProps = state => ({ cart: state.cart.items });
 
-const counterPrefix = count => ( count > 1 ? `${count} x ` : '');
-
-export default CartPage;
+export default connect(mapStateToProps)(CartPage);
