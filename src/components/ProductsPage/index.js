@@ -11,7 +11,6 @@ class ProductsPage extends React.Component {
 
   render() {
     const {products, isFetching, isError } = this.props;
-    console.log(products, isFetching, isError);
     const alertText = this.props.location.state && this.props.location.state.errorMessage;
     return (
       <ProductsPageView
@@ -27,18 +26,16 @@ class ProductsPage extends React.Component {
 }
 
 ProductsPage.propTypes = {
-  fetchProducts: PropTypes.func.isRequired,
-  products: PropTypes.array.isRequired,
-  isFetching: PropTypes.bool.isRequired,
-  isError: PropTypes.bool.isRequired
+  fetchProducts:  PropTypes.func.isRequired,
+  products:       PropTypes.array.isRequired,
+  isFetching:     PropTypes.bool.isRequired,
+  isError:        PropTypes.bool.isRequired
 };
 
-const mapStateToProps = state => {
-  return {
-    products:   state.products.items,
-    isFetching: state.products.isFetching,
-    isError:    state.products.isError
-  }
-};
+const mapStateToProps = state => ({
+  products:   state.products.items,
+  isFetching: state.products.isFetching,
+  isError:    state.products.isError
+});
 
 export default connect(mapStateToProps, { fetchProducts })(ProductsPage);

@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
-import cartContext from '~/cartContext'
+import { connect } from 'react-redux';
+import { addProductToCart } from '~/src/actions/Cart';
 
-class AddToCart extends Component {
+class AddToCart extends React.Component {
   constructor(props){
     super(props);
 
@@ -27,9 +28,7 @@ class AddToCart extends Component {
         </p>
 
         <p>
-          <cartContext.Consumer>
-            { (context) => <button onClick={ () => context.addToCart(product, count) }>Add to Cart</button> }
-          </cartContext.Consumer>
+          <button onClick={ () => this.props.addProductToCart(product, count) }>Add to Cart</button>
         </p>
       </>
     )
@@ -40,4 +39,4 @@ AddToCart.propTypes = {
   product:    PropTypes.object.isRequired
 };
 
-export default AddToCart;
+export default connect(null, { addProductToCart })(AddToCart);

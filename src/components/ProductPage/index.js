@@ -31,23 +31,15 @@ class ProductPage extends React.Component {
 
 ProductPage.propTypes = {
   fetchProduct: PropTypes.func.isRequired,
-  product: PropTypes.object.isRequired,
-  isFetching: PropTypes.bool.isRequired,
-  isError: PropTypes.bool.isRequired
+  product:      PropTypes.object.isRequired,
+  isFetching:   PropTypes.bool.isRequired,
+  isError:      PropTypes.bool.isRequired
 };
 
-const mapStateToProps = state => {
-  return {
-    product:    state.product.item,
-    isFetching: state.product.isFetching,
-    isError:    state.product.isError
-  }
-};
+const mapStateToProps = state => ({
+  product:    state.product.item,
+  isFetching: state.product.isFetching,
+  isError:    state.product.isError
+});
 
 export default connect(mapStateToProps, { fetchProduct })(ProductPage);
-
-
-
-
-/*
-*/
