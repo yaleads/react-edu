@@ -4,9 +4,13 @@ import { Router, Route, Switch } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import history from '~/history';
-
 import routes from '~/src/routes'
 import { productImagePath }  from '~/src/helpers/routes';
+
+import { Provider } from 'react-redux';
+import store from '~/src/store';
+
+//import DevTools from '~/src/containers/DevTools';
 
 import CartContainer from '~/src/components/CartContainer'
 import Header from '~/src/components/Header'
@@ -23,18 +27,20 @@ class App extends Component {
 
   render() {
     return (
-      <CartContainer>
-        <Router history={history}>
-          <Header />
+      <Provider store={store}>
+        <CartContainer>
+          <Router history={history}>
+            <Header />
 
-          <Switch>
-            { routes.map( (route, key) => RouteWithSubroutes(route, key) ) }
-          </Switch>
+            <Switch>
+              { routes.map( (route, key) => RouteWithSubroutes(route, key) ) }
+            </Switch>
 
-          <Route path={productImagePath()} component={FullScreen} />
+            <Route path={productImagePath()} component={FullScreen} />
 
-        </Router>
-      </CartContainer>
+          </Router>
+        </CartContainer>
+      </Provider>
     );
   }
 }
@@ -43,3 +49,8 @@ ReactDOM.render(
   <App />,
   document.getElementById('root')
 );
+
+//ReactDOM.render(
+//  <DevTools store={store} />,
+//  document.getElementById('devtools')
+//)
