@@ -5,3 +5,8 @@ export const addProductToCart = (product, count) => ({
   product:  product,
   count:    count
 });
+
+export const loadCart = () => ({
+  type:     types.LOAD_CART
+});
+

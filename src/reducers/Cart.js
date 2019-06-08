@@ -5,7 +5,7 @@ const initialState = {
   items: []
 };
 
-const addNewProductToCart = (currentItems, product, count) => {
+export const addNewProductToCart = (currentItems, product, count) => {
   const item = currentItems.find(item => item.product.id === product.id);
 
   if (item === undefined) {
@@ -29,6 +29,8 @@ export  default function(state = initialState, action) {
   switch(action.type) {
     case types.ADD_PRODUCT_TO_CART:
       return assign({}, initialState, { items: addNewProductToCart(state.items, action.product, action.count) });
+    case types.LOAD_CART:
+      return assign({}, initialState, { items: action.cart });
     default:
       return state;
   }

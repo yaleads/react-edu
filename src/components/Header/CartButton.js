@@ -3,9 +3,12 @@ import { NavLink } from 'react-router-dom';
 import { cartPath } from '~/src/helpers/routes'
 import pluralize from 'pluralize';
 import { connect } from 'react-redux';
-import { addProductToCart } from '~/src/actions/Cart';
+import { addProductToCart, loadCart } from '~/src/actions/Cart';
 
 class CartButton extends Component {
+  componentDidMount() {
+    this.props.loadCart();
+  }
 
   catchDrop(e){
     const draggableProduct = JSON.parse(e.dataTransfer.getData("productDraggableObject"));
@@ -32,4 +35,4 @@ const mapStateToProps = state => {
   return{ cartItemsCounter: cartItemsCounter }
 };
 
-export default connect(mapStateToProps, { addProductToCart })(CartButton);
+export default connect(mapStateToProps, { addProductToCart, loadCart })(CartButton);
