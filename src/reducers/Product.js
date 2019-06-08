@@ -14,7 +14,10 @@ export  default function(state = initialState, action) {
     case types.FETCH_PRODUCT_ERROR:
       return assign({}, initialState, { isError: true});
     case types.FETCH_PRODUCT_SUCCESS:
-      return assign({}, initialState, { item: action.product });
+      if (action.response.items.length > 0)
+        return assign({}, initialState, { item: action.response.items[0].fields });
+      else
+        return assign({}, initialState, { isError: true});
     default:
       return state;
   }
