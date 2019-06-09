@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const CartItems = ({ cart }) => {
   if (cart.length > 0) {
@@ -9,13 +9,13 @@ const CartItems = ({ cart }) => {
           <li key={item.product.id}>{counterPrefix(item.count)}{item.product.title}</li>
         ))}
       </div>
-    )
+    );
   }
   else {
-    return (<p>No products in the Cart</p>)
+    return (<p>No products in the Cart</p>);
   }
 };
 
-const counterPrefix = count => ( count > 1 ? `${count} x ` : '');
+const counterPrefix = count => (count > 1 ? `${count} x ` : '');
 
 export default CartItems;

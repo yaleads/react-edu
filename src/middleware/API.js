@@ -5,23 +5,20 @@ import { assign, pick } from 'lodash/object';
 
 import { API_ROOT } from '~/src/constants/API';
 
-function APICall({ method, query, payload }) {
+function APICall({ method, query}) {
   return new Promise((resolve, reject) => {
     let r = request[method.toLowerCase()](`${API_ROOT}`);
 
     if (query)
       r.query(stringify(query));
 
-    if (payload)
-      r = r.send(payLoad);
-
-    r.end( (error, data) => (
+    r.end((error, data) => (
       error ?
         reject(error)
-      : resolve(data.body)
-      )
+        : resolve(data.body)
     )
-  })
+    );
+  });
 }
 
 export const API_CALL = 'API_CALL';
@@ -38,7 +35,7 @@ export default store => next => action => {
   next(nextAction(action, {type: requestType}));
 
   const promise = APICall(
-    pick(action[API_CALL], ['method', 'query', 'payload'])
+    pick(action[API_CALL], ['method', 'query'])
   );
 
   promise.then(
