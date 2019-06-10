@@ -14,7 +14,10 @@ export  default function(state = initialState, action) {
     case types.FETCH_PRODUCTS_ERROR:
       return assign({}, initialState, { isError: true});
     case types.FETCH_PRODUCTS_SUCCESS:
-      return assign({}, initialState, { items: action.products });
+      let products = [];
+      action.response.items.forEach( item => ( products.push(item.fields) ));
+
+      return assign({}, initialState, { items: products });
 
     default:
       return state;

@@ -1,44 +1,7 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-import { Router, Route, Switch } from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from '~/src/App';
 
-import history from '~/history';
-import routes from '~/src/routes'
-import { productImagePath }  from '~/src/helpers/routes';
-
-import { Provider } from 'react-redux';
-import store from '~/src/store';
-
-import Header from '~/src/components/Header'
-import FullScreen from "./src/components/Gallery/FullScreen";
-
-const RouteWithSubroutes = (route, key) => (
-  <Route key={key} {...route} />
-);
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Provider store={store}>
-        <Router history={history}>
-          <Header />
-
-          <Switch>
-            { routes.map( (route, key) => RouteWithSubroutes(route, key) ) }
-          </Switch>
-
-          <Route path={productImagePath()} component={FullScreen} />
-
-        </Router>
-      </Provider>
-    );
-  }
-}
 
 ReactDOM.render(
   <App />,

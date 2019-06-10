@@ -1,5 +1,5 @@
 import { assign } from 'lodash';
-import * as types from '~/src/constants/actionTypes/Cart'
+import * as types from '~/src/constants/actionTypes/Cart';
 
 const initialState = {
   items: []
@@ -10,7 +10,7 @@ const addNewProductToCart = (currentItems, product, count) => {
 
   if (item === undefined) {
     // значит такого товара в корзине еще нет
-    return [...currentItems, {product: product, count: count}];
+    return [...currentItems, {product, count}];
   }
   else
   {
@@ -25,10 +25,12 @@ const addNewProductToCart = (currentItems, product, count) => {
 };
 
 
-export  default function(state = initialState, action) {
-  switch(action.type) {
+export default function(state = initialState, action) {
+  switch (action.type) {
     case types.ADD_PRODUCT_TO_CART:
       return assign({}, initialState, { items: addNewProductToCart(state.items, action.product, action.count) });
+    case types.LOAD_CART:
+      return assign({}, initialState, { items: action.cart });
     default:
       return state;
   }

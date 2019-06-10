@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import CartItems from './CartItems'
+import CartItems from './CartItems';
 
 const CartPage = ({ cart }) => (
   <div className='container'>
@@ -10,6 +11,10 @@ const CartPage = ({ cart }) => (
     <CartItems cart={cart} />
   </div>
 );
+
+CartPage.propTypes = {
+  cart: PropTypes.array.isRequired,
+};
 
 const mapStateToProps = state => ({ cart: state.cart.items });
 

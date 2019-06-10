@@ -1,14 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Modal, ModalBody } from 'reactstrap';
-import Image from '../shared/Image'
+import Image from '../shared/Image';
 
-const FullScreen =( { location: { state }, history } ) => {
-
+const FullScreen = ({ location: { state }, history }) => {
   if (state) {
     const image = state.image;
 
-    let goBack = e => {
+    const goBack = e => {
       e.stopPropagation();
       history.goBack();
     };
@@ -27,11 +26,11 @@ const FullScreen =( { location: { state }, history } ) => {
           document.getElementById('fullScreenGalleryContainer')
         )}
       </div>
-    )
+    );
   }
   else
   {
-    return null
+    return null;
   }
 };
 
