@@ -31,6 +31,8 @@ export default function(state = initialState, action) {
       return assign({}, initialState, { items: addNewProductToCart(state.items, action.product, action.count) });
     case types.LOAD_CART:
       return assign({}, initialState, { items: action.cart });
+    case types.RESET_CART:
+      return assign({}, initialState, { items: [] });
     default:
       return state;
   }

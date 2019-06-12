@@ -10,3 +10,7 @@ export const loadCart = () => ({
   type:     types.LOAD_CART
 });
 
+export const resetCart = () => ({
+  type:     types.RESET_CART
+});
+
