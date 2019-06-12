@@ -1,11 +1,12 @@
 import React from 'react';
+import ContactUsForm from './ContactUsForm';
 
 const Contacts = () => (
   <div className='container'>
     <h1 className={'mt-3'}>Contact us</h1>
     <hr />
 
-    <p>Our contacts should be here.</p>
+    <ContactUsForm />
   </div>
 );
 
