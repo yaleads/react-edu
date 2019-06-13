@@ -24,6 +24,16 @@ export default store => next => action => {
 
       return next(assign({}, action, {cart: loadedCart}));
 
+    case types.RESET_CART:
+      next(action);
+
+      try {
+        localStorage.setItem('cart', {});
+      } catch (e) {}
+
+      return null;
+
+
     default:
       return next(action);
   }
