@@ -1,7 +1,7 @@
-import ProductsPage from '~/src/components/ProductsPage';
-import { productsPath } from '~/src/helpers/routes';
-import { fetchProducts } from '~/src/actions/Products';
-import { loadCart } from '~/src/actions/Cart';
+import ProductsPage from 'components/ProductsPage';
+import { productsPath } from 'helpers/routes';
+import { fetchProducts } from 'actions/Products';
+import { loadCart } from 'actions/Cart';
 
 export default {
   path: productsPath(),

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchProducts } from '~/src/actions/Products';
-import ProductsPageView from './ProductsPageView'
+import { fetchProducts } from 'actions/Products';
+import ProductsPageView from './ProductsPageView';
 
 class ProductsPage extends React.Component {
   componentDidMount() {

@@ -1,0 +1,24 @@
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+
+import App from 'App';
+
+import routes from 'routes';
+import createStore from 'helpers/store';
+import historyCallBack from 'helpers/historyCallBack';
+import Helmet from 'react-helmet';
+
+export default (req, res) => {
+  const store = createStore();
+
+  return historyCallBack(store, routes, { pathname: req.url, query: req.query })
+    .then(() => {
+      const staticContext = {};
+      return {
+        content: renderToString(<App store={store} location={req.url} staticContext={staticContext} />),
+        initialState: store.getState(),
+        helmet: Helmet.renderStatic(),
+        statusCode: staticContext.statusCode
+      };
+    });
+};

@@ -1,6 +1,6 @@
-import Contacts from '~/src/components/Contacts';
-import { contactsPath } from '~/src/helpers/routes';
-import { loadCart } from '~/src/actions/Cart';
+import Contacts from 'components/Contacts';
+import { contactsPath } from 'helpers/routes';
+import { loadCart } from 'actions/Cart';
 
 export default {
   path: contactsPath(),

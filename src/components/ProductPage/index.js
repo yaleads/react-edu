@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ProductPageView from './ProductPageView'
-import { productsPath } from '~/src/helpers/routes'
+import { productsPath } from 'helpers/routes'
 
 
 class ProductPage extends React.Component {

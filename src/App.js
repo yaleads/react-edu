@@ -1,48 +1,28 @@
+/* globals __CLIENT__, __SERVER__*/
 import React from 'react';
-import { Router, Route, Switch, matchPath } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Router, Route, Switch, StaticRouter } from 'react-router-dom';
 
-import history from '~/history';
-import routes from '~/src/routes';
-import { productImagePath }  from '~/src/helpers/routes';
-import { parse } from 'qs';
-
+import { productImagePath }  from 'helpers/routes';
 import { Provider } from 'react-redux';
-import store from '~/src/store';
-
-import Header from '~/src/components/Header';
-import FullScreen from '~/src/components/Gallery/FullScreen';
-import prepareData from '~/src/helpers/prepareData';
-
-function historyCallBack(location) {
-  const state = { params: {}, query: {}, routes: [] };
-
-  routes.some((route) => {
-    const match = matchPath(location.pathname, route);
-
-    if (match) {
-      state.routes.push(route);
-      Object.assign(state.params, match.params);
-      Object.assign(state.query, parse(location.search.substr(1)));
-    }
-
-    return match;
-  });
-
-  prepareData(store, state);
-}
-
-history.listen(historyCallBack);
-historyCallBack(window.location);
-
+import Header from 'components/Header';
+import FullScreen from 'components/Gallery/FullScreen';
+import routes from './routes';
 
 const RouteWithSubroutes = (route, key) => (
   <Route key={key} {...route} />
 );
 
-const App = () => (
+const AppRouter = ({ history, children, location, staticContext }) => {
+  if (__CLIENT__)
+    return (<Router history={history}>{children}</Router>);
+
+  if (__SERVER__)
+    return (<StaticRouter location={location} context={staticContext}>{children}</StaticRouter>);
+};
+
+const App = ({ history, store, location, staticContext }) => (
   <Provider store={store}>
-    <Router history={history}>
+    <AppRouter history={history} location={location} staticContext={staticContext}>
       <Header />
 
       <Switch>
@@ -51,7 +31,7 @@ const App = () => (
 
       <Route path={productImagePath()} component={FullScreen} />
 
-    </Router>
+    </AppRouter>
   </Provider>
 );
 

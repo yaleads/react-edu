@@ -2,7 +2,7 @@ import React from 'react';
 import { withFormik } from 'formik';
 import CartForm from './CartForm';
 import * as yup from 'yup';
-import { resetCart } from '~/src/actions/Cart';
+import { resetCart } from 'actions/Cart';
 import {connect} from 'react-redux';
 
 const CartFormContainer = withFormik({

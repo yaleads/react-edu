@@ -3,9 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CartItems from './CartItems';
 import CartFormContainer from './CartFormContainer';
+import Helmet from 'react-helmet';
 
 const CartPage = ({ cart }) => (
   <div className='container'>
+    <Helmet>
+      <title>Cart</title>
+      <meta name="description" content='Cart' />
+    </Helmet>
+
     <h1 className={'mt-3'}>Cart</h1>
     <hr />
 

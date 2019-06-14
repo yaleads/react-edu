@@ -1,6 +1,6 @@
-import CartPage from '~/src/components/CartPage';
-import { cartPath } from '~/src/helpers/routes';
-import { loadCart } from '~/src/actions/Cart';
+import CartPage from 'components/CartPage';
+import { cartPath } from 'helpers/routes';
+import { loadCart } from 'actions/Cart';
 
 export default {
   path: cartPath(),
