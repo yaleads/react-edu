@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CartItems from './CartItems';
 import CartFormContainer from './CartFormContainer';
-import Helmet from "react-helmet";
+import Helmet from 'react-helmet';
 
 const CartPage = ({ cart }) => (
   <div className='container'>
