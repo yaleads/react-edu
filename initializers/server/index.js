@@ -17,7 +17,7 @@ app.get(
   (req, res) => {
     render(req, res)
       .then((result) => {
-        res.status(200);
+        res.status(result.statusCode || 200);
         res.render(
           'index',
           {
@@ -28,8 +28,6 @@ app.get(
           }
         );
       });
-
-
   }
 );
 

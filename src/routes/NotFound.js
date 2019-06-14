@@ -1,5 +1,12 @@
 import NotFound from 'components/NotFound';
+import React from 'react';
 
 export default {
-  component: NotFound
+  render: ({ staticContext }) => {
+    if (staticContext) {
+      staticContext.statusCode = 404;
+    }
+
+    return (<NotFound />);
+  }
 };

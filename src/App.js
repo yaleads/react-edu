@@ -12,17 +12,17 @@ const RouteWithSubroutes = (route, key) => (
   <Route key={key} {...route} />
 );
 
-const AppRouter = ({ history, children, location, context }) => {
+const AppRouter = ({ history, children, location, staticContext }) => {
   if (__CLIENT__)
     return (<Router history={history}>{children}</Router>);
 
   if (__SERVER__)
-    return (<StaticRouter location={location} context={context}>{children}</StaticRouter>);
+    return (<StaticRouter location={location} context={staticContext}>{children}</StaticRouter>);
 };
 
-const App = ({ history, store, location, context }) => (
+const App = ({ history, store, location, staticContext }) => (
   <Provider store={store}>
-    <AppRouter history={history} location={location} context={context}>
+    <AppRouter history={history} location={location} staticContext={staticContext}>
       <Header />
 
       <Switch>

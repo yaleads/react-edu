@@ -8,6 +8,10 @@ export default function historyCallBack(store, routes, location) {
   const state = { params: {}, query: {}, routes: [] };
 
   routes.some((route) => {
+    // пропускаем routes, у которых нет path
+    if (route.path === undefined)
+      return null;
+
     const match = matchPath(location.pathname, route);
 
     if (match) {

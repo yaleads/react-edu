@@ -13,11 +13,12 @@ export default (req, res) => {
 
   return historyCallBack(store, routes, { pathname: req.url, query: req.query })
     .then(() => {
-      const context = {};
+      const staticContext = {};
       return {
-        content: renderToString(<App store={store} location={req.url} context={context} />),
+        content: renderToString(<App store={store} location={req.url} staticContext={staticContext} />),
         initialState: store.getState(),
-        helmet: Helmet.renderStatic()
+        helmet: Helmet.renderStatic(),
+        statusCode: staticContext.statusCode
       };
     });
 };
