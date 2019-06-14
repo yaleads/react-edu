@@ -2,9 +2,15 @@ import React from 'react';
 import ProductsList from './ProductsList';
 import Alert from 'components/shared/Alert';
 import ProductSlider from 'components/ProductsSlider';
+import Helmet from "react-helmet";
 
 const ProductsPageView = ({products, sliderProducts, alertText, isFetching, isError}) => (
   <div className='container'>
+    <Helmet>
+      <title>Products catalog</title>
+      <meta name="description" content='Products catalog' />
+    </Helmet>
+
     <Alert text={ alertText }/>
 
     {sliderProducts.length > 0 && <ProductSlider products={sliderProducts}/>}

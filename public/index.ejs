@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>First React App</title>
+  <%- helmet.title.toString() %>
+  <%- helmet.meta.toString() %>
   <link rel="stylesheet" href="<%- manifest["main.css"] %>" />
 <body>
   <div id="root"><%- content %></div>
