@@ -9,4 +9,17 @@ module.exports = merge(common, {
     contentBase: path.resolve(process.cwd(), 'public'),
     historyApiFallback: true
   },
+
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          {  loader: 'style-loader', options: { sourceMap: true } },
+          {  loader: 'css-loader', options: { sourceMap: true } }
+        ]
+      }
+    ]
+  },
+
 });
