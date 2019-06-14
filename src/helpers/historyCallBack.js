@@ -1,11 +1,10 @@
 /* globals __CLIENT__, __SERVER__ */
-import { createBrowserHistory } from 'history';
 
 import {matchPath} from 'react-router';
 import {parse} from 'qs';
 import prepareData from 'helpers/prepareData';
 
-export function historyCallBack(store, routes, location) {
+export default function historyCallBack(store, routes, location) {
   const state = { params: {}, query: {}, routes: [] };
 
   routes.some((route) => {
@@ -29,5 +28,3 @@ export function historyCallBack(store, routes, location) {
 
   return prepareData(store, state);
 }
-
-export default createBrowserHistory();

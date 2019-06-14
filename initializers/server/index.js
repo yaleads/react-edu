@@ -9,7 +9,8 @@ const PORT = process.env.PORT || 3001;
 
 app.use(express.static(path.resolve(process.cwd(), 'public')));
 
-app.set('view engine', 'esj');
+app.set('views', path.resolve(process.cwd(), 'public'));
+app.set('view engine', 'ejs');
 
 app.get(
   '*',

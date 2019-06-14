@@ -1,7 +1,7 @@
 /* globals __CLIENT__, __SERVER__  */
 import { createStore, applyMiddleware, compose } from 'redux';
 
-import reducers from './reducers';
+import reducers from '../reducers';
 import APIMiddleware from 'middleware/API';
 import CartLocalStorageMiddleware from 'middleware/cartLocalStorage';
 

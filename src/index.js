@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import history, { historyCallBack } from './history';
+import history from './helpers/history';
+import historyCallBack from './helpers/historyCallBack';
 import routes from './routes';
-import createStore from './store';
+import createStore from './helpers/store';
 
 const store = createStore(window.INITIAL_STATE);
 
