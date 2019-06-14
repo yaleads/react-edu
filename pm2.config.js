@@ -17,7 +17,7 @@ module.exports = {
       host: ['138.68.234.157'],
       ref: 'origin/lesson09',
       repo: 'https://github.com/yaleads/react-edu.git',
-      path: '/home/pm2/app',
+      path: '/home/pm2/app/current',
       'post-deploy': 'yarn && yarn build:server && pm2 startOnRestart pm2.config.js --env production'
     }
   }
