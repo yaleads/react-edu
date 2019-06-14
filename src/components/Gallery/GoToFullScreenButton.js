@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import { productImagePath }  from '~/src/helpers/routes';
+import { productImagePath }  from 'helpers/routes';
 
 const GoToFullScreenButton = ({productId, currentImageIndex, currentImage}) => (
   <Link className={'btn btn-primary mb-2'} to={{

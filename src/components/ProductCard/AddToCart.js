@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addProductToCart } from '~/src/actions/Cart';
+import { addProductToCart } from 'actions/Cart';
 
 class AddToCart extends React.Component {
   constructor(props){

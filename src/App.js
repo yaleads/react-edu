@@ -2,19 +2,19 @@ import React from 'react';
 import { Router, Route, Switch, matchPath } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import history from '~/history';
-import routes from '~/src/routes';
-import { productImagePath }  from '~/src/helpers/routes';
+import history from './history';
+import routes from './routes';
+import { productImagePath }  from 'helpers/routes';
 import { parse } from 'qs';
 
 import { Provider } from 'react-redux';
-import store from '~/src/store';
+import store from './store';
 
-import Header from '~/src/components/Header';
-import FullScreen from '~/src/components/Gallery/FullScreen';
-import prepareData from '~/src/helpers/prepareData';
+import Header from 'components/Header';
+import FullScreen from 'components/Gallery/FullScreen';
+import prepareData from 'helpers/prepareData';
 
-function historyCallBack(location) {
+function historyCallBack(store, routes, location) {
   const state = { params: {}, query: {}, routes: [] };
 
   routes.some((route) => {
@@ -32,15 +32,15 @@ function historyCallBack(location) {
   prepareData(store, state);
 }
 
-history.listen(historyCallBack);
-historyCallBack(window.location);
+history.listen((location) => historyCallBack(store, routes, location));
+historyCallBack(store, routes, window.location);
 
 
 const RouteWithSubroutes = (route, key) => (
   <Route key={key} {...route} />
 );
 
-const App = () => (
+const App = ({ location }) => (
   <Provider store={store}>
     <Router history={history}>
       <Header />

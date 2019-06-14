@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 
 import reducers from './reducers';
-import APIMiddleware from '~/src/middleware/API'
-import CartLocalStorageMiddleware from '~/src/middleware/cartLocalStorage'
+import APIMiddleware from 'middleware/API';
+import CartLocalStorageMiddleware from 'middleware/cartLocalStorage';
 
 const store = createStore(
   reducers,

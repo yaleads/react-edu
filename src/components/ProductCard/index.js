@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import Image from '~/src/components/shared/Image'
-import TextBox from '~/src/components/shared/TextBox'
-import Price from '~/src/components/shared/Price'
-import AddToCart from './AddToCart'
-import { NavLink } from "react-router-dom";
-import { productPath } from "~/src/helpers/routes";
+import React, { Component } from 'react';
+import Image from 'components/shared/Image';
+import TextBox from 'components/shared/TextBox';
+import Price from 'components/shared/Price';
+import AddToCart from './AddToCart';
+import { NavLink } from 'react-router-dom';
+import { productPath } from 'helpers/routes';
 
 class ProductCard extends Component {
 

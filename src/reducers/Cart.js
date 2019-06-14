@@ -1,5 +1,5 @@
 import { assign } from 'lodash';
-import * as types from '~/src/constants/actionTypes/Cart';
+import * as types from 'constants/actionTypes/Cart';
 
 const initialState = {
   items: []

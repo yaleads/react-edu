@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { cartPath } from '~/src/helpers/routes';
+import { cartPath } from 'helpers/routes';
 import pluralize from 'pluralize';
 import { connect } from 'react-redux';
-import { addProductToCart } from '~/src/actions/Cart';
+import { addProductToCart } from 'actions/Cart';
 
 class CartButton extends Component {
   catchDrop(e) {

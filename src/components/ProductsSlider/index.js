@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductCard from '~/src/components/ProductCard';
+import ProductCard from 'components/ProductCard';
 
 class ProductsSlider extends React.Component {
   constructor(props) {

@@ -3,7 +3,7 @@ import request from 'superagent';
 import { stringify  } from 'qs';
 import { assign, pick } from 'lodash/object';
 
-import { API_ROOT } from '~/src/constants/API';
+import { API_ROOT } from 'constants/API';
 
 function APICall({ method, query}) {
   return new Promise((resolve, reject) => {
