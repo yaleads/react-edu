@@ -1,3 +1,4 @@
+/* globals __CLIENT__, __SERVER__ */
 import { createBrowserHistory } from 'history';
 
 import {matchPath} from 'react-router';
@@ -12,14 +13,21 @@ export function historyCallBack(store, routes, location) {
 
     if (match) {
       state.routes.push(route);
+
+
       Object.assign(state.params, match.params);
-      Object.assign(state.query, parse(location.search.substr(1)));
+
+      if (__CLIENT__)
+        Object.assign(state.query, parse(location.search.substr(1)));
+
+      if (__SERVER__)
+        state.query = location.query;
     }
 
     return match;
   });
 
-  prepareData(store, state);
+  return prepareData(store, state);
 }
 
 export default createBrowserHistory();

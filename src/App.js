@@ -1,7 +1,6 @@
 /* globals __CLIENT__, __SERVER__*/
 import React from 'react';
 import { Router, Route, Switch, StaticRouter } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { productImagePath }  from 'helpers/routes';
 import { Provider } from 'react-redux';
