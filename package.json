@@ -9,7 +9,8 @@
     "analyze": "webpack --config ./initializers/webpack/production.js --profile --json > stats.json && webpack-bundle-analyzer stats.json",
     "cleanup": "rm -rf public/assets",
     "start:dev": "webpack-dev-server --config ./initializers/webpack/development.js",
-    "start": "parcel ./index.html"
+    "start:parcel": "parcel ./index.html",
+    "start": "pm2-runtime start pm2.config.js --env production"
   },
   "keywords": [],
   "author": "",
