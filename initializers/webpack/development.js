@@ -1,6 +1,7 @@
 const merge = require('webpack-merge');
 const common = require('./common');
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -21,5 +22,13 @@ module.exports = merge(common, {
       }
     ]
   },
+
+  plugins: [
+    new webpack.DefinePlugin({
+      NODE_ENV: 'production',
+      __CLIENT__: true,
+      __SERVER__: false
+    })
+  ]
 
 });

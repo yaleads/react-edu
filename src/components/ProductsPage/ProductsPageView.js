@@ -19,5 +19,4 @@ const ProductsPageView = ({products, sliderProducts, alertText, isFetching, isEr
   </div>
 );
 
-
 export default ProductsPageView;

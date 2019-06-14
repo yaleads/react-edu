@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -30,7 +31,9 @@ module.exports = merge(common, {
 
   plugins: [
     new webpack.DefinePlugin({
-      NODE_ENV: 'production'
+      NODE_ENV: 'production',
+      __CLIENT__: true,
+      __SERVER__: false
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
@@ -38,7 +41,8 @@ module.exports = merge(common, {
     }),
     new MiniCssExtractPlugin({
       filename: 'assets/[name].[hash].css'
-    })
+    }),
+    new ManifestPlugin()
   ]
 
 });
