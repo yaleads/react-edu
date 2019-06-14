@@ -7,8 +7,7 @@ module.exports = {
     instances: 2,
     exec_mode: 'cluster',
     env_production: {
-      NODE_ENV: 'production',
-      PORT: 9020
+      NODE_ENV: 'production'
     }
   }],
 
@@ -19,7 +18,7 @@ module.exports = {
       ref: 'origin/lesson09',
       repo: 'https://github.com/yaleads/react-edu.git',
       path: '/home/pm2/app',
-      'post-deploy': 'yarn && yarn build:server && pm2 startOnRestart pm2.config.js --env production'
+      'post-deploy': 'yarn && yarn build:server && pm2 start pm2.config.js --env production'
     }
   }
 };
