@@ -177,7 +177,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! exports provided: main.css, main.js, main.css.map, main.js.map, ./index.html, default */
 /***/ (function(module) {
 
-module.exports = {"main.css":"/assets/main.dcb67867a248f1392fe3.css","main.js":"/assets/main.dcb67867a248f1392fe3.js","main.css.map":"/assets/main.dcb67867a248f1392fe3.css.map","main.js.map":"/assets/main.dcb67867a248f1392fe3.js.map","./index.html":"/./index.html"};
+module.exports = {"main.css":"/assets/main.a8d95571880bd05a4df5.css","main.js":"/assets/main.a8d95571880bd05a4df5.js","main.css.map":"/assets/main.a8d95571880bd05a4df5.css.map","main.js.map":"/assets/main.a8d95571880bd05a4df5.js.map","./index.html":"/./index.html"};
 
 /***/ }),
 
@@ -2341,6 +2341,11 @@ function historyCallBack(store, routes, location) {
     query: {},
     routes: []
   };
+  console.log('historyCallBack START');
+  console.log(store);
+  console.log(routes);
+  console.log(location);
+  console.log('historyCallBack END');
   routes.some(function (route) {
     var match = Object(react_router__WEBPACK_IMPORTED_MODULE_0__["matchPath"])(location.pathname, route);
 
