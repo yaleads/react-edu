@@ -12,7 +12,7 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "formik": "^1.5.7",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "pluralize": "^7.0.0",
     "qs": "^6.7.0",
     "react": "^16.8.6",
